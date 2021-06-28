@@ -29,7 +29,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "npm run lint",
     "src/**/*.{js,jsx,ts,tsx,less,css,md,json}": [
-      "npm run prettier"
+      "prettier --write"
     ]
   },
   "dependencies": {
