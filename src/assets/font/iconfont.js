@@ -24,8 +24,8 @@
   (h = function () {
     var c, h, a;
     ((a = document.createElement('div')).innerHTML = e),
-      (e = null),
-      (h = a.getElementsByTagName('svg')[0]) &&
+    (e = null),
+    (h = a.getElementsByTagName('svg')[0]) &&
         (h.setAttribute('aria-hidden', 'true'),
         (h.style.position = 'absolute'),
         (h.style.width = 0),
@@ -36,14 +36,14 @@
           ? (h = a.firstChild).parentNode.insertBefore(c, h)
           : a.appendChild(c));
   }),
-    document.addEventListener
-      ? ~['complete', 'loaded', 'interactive'].indexOf(document.readyState)
-        ? setTimeout(h, 0)
-        : ((a = function () {
-            document.removeEventListener('DOMContentLoaded', a, !1), h();
-          }),
-          document.addEventListener('DOMContentLoaded', a, !1))
-      : document.attachEvent &&
+  document.addEventListener
+    ? ~['complete', 'loaded', 'interactive'].indexOf(document.readyState)
+      ? setTimeout(h, 0)
+      : ((a = function () {
+        document.removeEventListener('DOMContentLoaded', a, !1), h();
+      }),
+      document.addEventListener('DOMContentLoaded', a, !1))
+    : document.attachEvent &&
         ((t = h),
         (l = c.document),
         (i = !1),
