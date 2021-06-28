@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Spin, Button } from 'antd';
@@ -6,12 +5,13 @@ import ImgLogo from '@/assets/react-logo.jpg';
 // import '@/assets/font/iconfont.css';
 import './i.css';
 import styles from './index.less';
-import red from './red.css';
-// import "./one.less";
-import "./one.less";
+import red from './red.css'
+// import "./one.less"
+import "./one.less"
+
+
 
 function HomePageContainer(props) {
-  // const a;
   return (
     <div className={styles.layout}>
       <Button type="primary">Primary Button</Button>

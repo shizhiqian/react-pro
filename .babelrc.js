@@ -9,7 +9,7 @@ module.exports = {
     // 使用 react 项目时，需要使用此包配合转译,转换React jsx语法
     "@babel/preset-react",
     //当你项目是用 TypeScript 编写时，需要使用此包配合转译
-    // "@babel/preset-typescript"
+    "@babel/preset-typescript"
   ],
   "plugins": [
     // 抽离babel的一些公共工具类用来减少代码的大小

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack server --config webpack.dev.config.js",
-    "prettier": "prettier -c --write \"src/**/*.{js,jsx,css,less}\"",
+    "prettier": "prettier -c --write \"src/**/*.{js,jsx,ts,tsx,css,less}\"",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
-    "lint:prettier": "prettier --check \"src/**/*.{js,jsx,css,less}\" --end-of-line auto"
+    "lint:prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,less}\" --end-of-line auto"
   },
   "keywords": [
     "react",
@@ -29,7 +29,7 @@
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "./src/**/*.{js,jsx,tsx,ts,less,css,md,json}": [
+    "./src/**/*.{js,jsx,ts,tsx,less,css,md,json}": [
       "prettier --write"
     ]
   },
@@ -55,6 +55,7 @@
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
     "@babel/runtime": "^7.14.6",
     "antd-dayjs-webpack-plugin": "^1.0.6",
     "babel-eslint": "^10.1.0",

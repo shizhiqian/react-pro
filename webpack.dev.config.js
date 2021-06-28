@@ -121,7 +121,7 @@ module.exports = {
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         type: "asset/resource",
         generator: {
-          filename: 'font/[name].[hash:6][ext]'
+          filename: 'static/[name].[hash:6][ext]'
         }
       },
       {
@@ -133,7 +133,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'assets/[name].[hash:6][ext]'
+          filename: 'static/[name].[hash:6][ext]'
         }
       },
     ]
