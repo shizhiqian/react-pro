@@ -1,0 +1,54 @@
+# https://gist.github.com/octocat/9257657
+# 说明
+# bin/: 忽略目录bin下的所有内容，注意不管是根目录还是其他的子目录都会被忽略，不忽略 bin 文件
+# /bin: 忽略根目录下的bin文件
+# /bin/*: 忽略根目录bin下的全部内容
+# *.log: 忽略所有 .log 文件
+# config.php: 忽略当前路径的 config.php 文件
+
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# git冲突合并的临时文件
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+*.tmp.html
+*.dump
+
+# dependencies
+/node_modules
+
+# production
+/dist
+/build
+
+# 操作系统或编辑器文件夹
+.DS_Store
+.vscode
+.idea
+.cache
+.project
+.svn
+.CVS
+*.lock
+package-lock.json
+.history
+
+# umi
+.umi
+.umi-production
+
+.eslintcache

@@ -1,0 +1,93 @@
+{
+  "id": "1201824",
+  "name": "新颜科技-数据中台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8127482",
+      "name": "404",
+      "font_class": "icon-test",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "8952924",
+      "name": "java-script",
+      "font_class": "java-script",
+      "unicode": "e810",
+      "unicode_decimal": 59408
+    },
+    {
+      "icon_id": "6239735",
+      "name": "api",
+      "font_class": "api",
+      "unicode": "e723",
+      "unicode_decimal": 59171
+    },
+    {
+      "icon_id": "1421423",
+      "name": "申请授权",
+      "font_class": "shenqingshouquan",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "8765788",
+      "name": "安全",
+      "font_class": "anquan",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "4766961",
+      "name": "api",
+      "font_class": "api1",
+      "unicode": "e7e1",
+      "unicode_decimal": 59361
+    },
+    {
+      "icon_id": "1881552",
+      "name": "可视化数据ETL",
+      "font_class": "keshihuashujuETL",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "5580629",
+      "name": "文件",
+      "font_class": "wenjian",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "7738009",
+      "name": "权限管理",
+      "font_class": "quanxianguanli",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "4138715",
+      "name": "表单配置",
+      "font_class": "biaodanpeizhi",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "2129910",
+      "name": "查找相似",
+      "font_class": "chazhaoxiangsi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "4143190",
+      "name": "数据",
+      "font_class": "shuju",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    }
+  ]
+}

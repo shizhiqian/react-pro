@@ -1,0 +1,9 @@
+/*@r: red;*/
+/*.layout {*/
+/*  font-size: 30px;*/
+/*  color: @r;*/
+/*  display: flex;*/
+/*}*/
+.red {
+  color: red;
+}
