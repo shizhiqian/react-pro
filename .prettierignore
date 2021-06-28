@@ -13,3 +13,4 @@ LICENSE
 *.lock
 yarn-error.log
 .history
+/src/**/font/*

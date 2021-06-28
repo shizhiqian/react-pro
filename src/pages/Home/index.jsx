@@ -1,20 +1,31 @@
-import React from 'react'
+import React from 'react';
 // import { connect } from 'react-redux';
-import { Button } from 'antd'
-import ImgLogo from '@/assets/react-logo.jpg'
+import { Button } from 'antd';
+import ImgLogo from '@/assets/react-logo.jpg';
 // import '@/assets/font/iconfont.css';
-import './i.css'
-import styles from './index.less'
-import red from './red.css'
+import './i.css';
+import styles from './index.less';
+import red from './red.css';
+// import T from './t.tsx'
 // import "./one.less"
-import './one.less'
+import './one.less';
 
+const aa = {
+  type: 1,
+  a: 12,
+};
 
-function HomePageContainer() {
+const HomePageContainer = () => {
+  const { type, a } = aa;
+
   return (
     <div className={styles.layout}>
+      {/*<T />*/}
       <Button type="primary">Primary Button</Button>
       {/*<span className="iconfont icon-anquan"></span>*/}
+      <div>
+        {type}\{a}
+      </div>
       <div className="one">one</div>
       <div className={red.red}>red23</div>
       <div className="i">njj732222222</div>
@@ -26,7 +37,7 @@ function HomePageContainer() {
       </div>
     </div>
   );
-}
+};
 export default HomePageContainer;
 // export default connect(
 //   state => {

@@ -9,11 +9,13 @@ export default function PageLoading({ error, timedOut, pastDelay }) {
 
   const renderState = () => {
     let node;
+    // console.log(error);
+    // console.log(1111);
     if (error) {
       node = (
         <Result
           status="error"
-          title="加载出错，请刷新页面"
+          title="页面加载出错，请尝试刷新页面"
           extra={
             <Button type="primary" onClick={handleRefresh}>
               刷新

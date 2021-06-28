@@ -1,3 +1,28 @@
+### 功能
+- [x] Webpack5
+- [x] 支持typescript
+- [x] Babel7
+- [x] React17
+- [x] Hooks
+- [x] Redux完整示范
+- [x] React-router-dom
+- [x] 集成Antd
+- [x] Css modules，支持Less，hash命名样式
+- [x] Postcss添加css前缀
+- [x] Eslint、Prettier统一代码风格
+- [x] Husky6提交前检查代码风格
+- [x] Mockjs模拟后端返回接口
+- [x] 代码分割
+- [x] 热替换
+- [x] ES6+
+- [x] Husky
+- [x] Axios异步请求
+- [ ] react-helmet用来动态改变title
+- [ ] 布局：顶部导航、左侧菜单
+
+
+
+
 ### 实现过程
 1. 在根目录初始化项目，自动生成`package.json`。
 ```
@@ -10,12 +35,13 @@ touch .gitignore
 ```
 3. 在根目录创建.gitignore、push.sh、merge.sh、.editorconfig文件
 
-4. 在根目录创建server.js，并安装依赖
+4. 兼容 ES6+
 ```
+# babel-loader：用于处理 ES6+ 语法，将其编译为浏览器可以执行的 js
 # webpack
 # webpack-cli: Webpack构建工具 - 4.0+版本webpack单独提取了这个npm包，打包时需要
 # mockjs
-# core-js: 代替babel-polyfill,使浏览器支持ES6+新功能
+# core-js: @babel/preset-env依赖core-js,代替babel-polyfill,使浏览器支持ES6+新功能
 # react: react核心
 # react-dom: react Dom操作工具库（render函数等）
 # react-loadable: 代码分割按需加载插件
@@ -42,11 +68,11 @@ yarn add axios antd @rematch/core redux react-router-dom react-redux react-dom r
 # eslint-plugin-react：Eslint插件 - 让Eslint支持检测JSX（.eslintrc22222.json中有配置）
 # eslint-plugin-react-hooks：Eslint插件 - 让Eslint支持检测Hooks语法
 # prettier：代码自动格式化插工具
-# style-loader：Webpack解析器 - 用于提取重复的css代码加入到<style>标签里
+# style-loader：Webpack解析器 - 用于提取重复的css代码加入到<style>标签里,适用devlopment环境
 # css-loader：Webpack解析器 - 用于解析js中import的css，和css中url()的路径
 # postcss:
-# postcss-loader：Webpack解析器 - 用于进一步解析CSS，比如自动添加-webkit-前缀等
-# postcss-preset-env：postCSS插件，自动添加CSS前缀等
+# postcss-loader：Webpack解析器 - 用于进一步解析CSS，用来添加浏览器css兼容性代码
+# postcss-preset-env：跟babel类似，把新css语法转换为旧css语法
 # less：Less核心
 # less-loader：Webpack解析器 - 解析Less,主要是解析antd的样式文件
 # file-loader：Webpack解析器 - 解析各类文件时有用，图片音频等,处理它们的相对路径
@@ -55,6 +81,7 @@ yarn add postcss-preset-env dayjs postcss autoprefixer less less-loader file-loa
 ```
 6. 安装babel
 ```
+Babel默认只转换新的 js 语法，而不转换新的API，如 Iterator、Generator、Set、Maps、Proxy、 Reflect、Symbol、Promise 等全局对象，以及一些在全局对象上的方法如 Object.assign都不会转码（如ES6在 Array 对象上新增了 Array.form 方法，Babel就不会转码这个方法，如果想让这个方法运行，必须使用babel-polyfill 、babel-runtime 、plugin-transform-runtime 等插件来转换）
 # @babel/core：babel核心，编译ES6+新语法
 # @babel/plugin-proposal-class-properties：Babel插件 - 用于让class类中支持定义箭头函数的语法
 # @babel/plugin-proposal-decorators：Babel插件 - 支持修饰器语法 Decorator
@@ -74,7 +101,7 @@ yarn add babel-loader babel-eslint babel-plugin-import @babel/plugin-proposal-op
 7. 在根目录创建webpack.production.config.js
 ```
 # terser-webpack-plugin: 对js进行压缩,Webpack插件 - 这个插件修复了很多错误，覆盖webpack内置的uglifyJS
-# mini-css-extract-plugin: Webpack插件 - 打包时将CSS提取出来，而不是和js混在一起
+# mini-css-extract-plugin: Webpack插件 - 打包时将CSS提取出来，而不是和js混在一起,区别是使用link标签作为独立的文件引入，适用production环境
 # css-minimizer-webpack-plugin: 压缩css
 # clean-webpack-plugin: 每次打包前清除旧的build文件夹
 # favicons-webpack-plugin: 自动生成适配各终端得ico图标，pwa会用到部分

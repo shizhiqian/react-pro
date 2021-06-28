@@ -1,27 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
-const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public中的文件到打包的最终文件夹中
-const webpackbar = require("webpackbar"); // 控制台美化webpack进度条
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // 动态生成html插件
+const CopyPlugin = require('copy-webpack-plugin'); // 用于直接复制public中的文件到打包的最终文件夹中
+const webpackbar = require('webpackbar'); // 控制台美化webpack进度条
 
-const PUBLIC_PATH = "/"; // 基础路径
+const PUBLIC_PATH = '/'; // 基础路径
 
 module.exports = {
   mode: 'development',
   target: 'web',
   stats: 'errors-only',
   entry: [
-    "./src/index.js", // 项目入口
+    './src/index.js', // 项目入口
   ],
   output: {
     path: path.resolve(__dirname, '/'), // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径,要求值必须为绝对路径
     publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径,若publicPath的值以“/”开始，则代表此时publicPath是以当前页面的host name为基础路径的
-    filename: "bundle-[contenthash].js", // 编译后的文件名字
+    filename: 'bundle-[contenthash].js', // 编译后的文件名字
   },
-  devtool: "eval-source-map", // 报错的时候在控制台输出哪一行报错
+  devtool: 'eval-source-map', // 报错的时候在控制台输出哪一行报错
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
     },
   },
   devServer: {
@@ -38,12 +38,12 @@ module.exports = {
         changeOrigin: true, // 是否跨域
         pathRewrite: {
           '^/api': '', // 路径重写，将api开头的全部替换成空字符串
-        }
+        },
       },
     },
     client: {
       logging: 'info',
-    }
+    },
   },
   module: {
     rules: [
@@ -51,9 +51,14 @@ module.exports = {
       // options: '...',已废弃。Rule.options 和 Rule.query 是 Rule.use: [ { options } ] 的简写
       {
         test: /\.(ts|tsx|js|jsx)?$/i,
-        use: ["babel-loader"],
         exclude: /node_modules/,
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { cacheDirectory: true },
+          },
+        ],
       },
       {
         test: /\.less$/,
@@ -61,33 +66,33 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          "postcss-loader",
+          'postcss-loader',
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-              }
+              },
             },
           },
-        ]
+        ],
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 1,
               modules: {
                 mode: 'local',
-                localIdentName: '[path][name]__[local]__[hash:base64:5]'
-              }
+                localIdentName: '[path][name]__[local]__[hash:base64:5]',
+              },
             },
           },
-          "postcss-loader"
+          'postcss-loader',
         ],
       },
 
@@ -95,48 +100,48 @@ module.exports = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 2,
               modules: {
                 mode: 'local',
-                localIdentName: "[path][name]__[local]__[hash:base64:5]",
+                localIdentName: '[path][name]__[local]__[hash:base64:5]',
               },
             },
           },
-          "postcss-loader",
+          'postcss-loader',
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-              }
+              },
             },
           },
         ],
       },
       {
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
-        type: "asset/resource",
+        type: 'asset/resource',
         generator: {
-          filename: 'static/[name].[hash:6][ext]'
-        }
+          filename: 'static/[name].[hash:6][ext]',
+        },
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
-        type: "asset",
+        type: 'asset',
         parser: {
           dataUrlCondition: {
-            maxSize: 10 * 1024 // 10kb以内转换为base64
-          }
+            maxSize: 10 * 1024, // 10kb以内转换为base64
+          },
         },
         generator: {
-          filename: 'static/[name].[hash:6][ext]'
-        }
+          filename: 'static/[name].[hash:6][ext]',
+        },
       },
-    ]
+    ],
   },
   plugins: [
     new webpackbar(),
@@ -146,20 +151,20 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       // 根据模板插入css/js等生成最终HTML
-      filename: "index.html", //生成的html存放路径，相对于 output.path
-      favicon: "./public/favicon.png", // 自动把根目录下的favicon.ico图片加入html
-      template: "./public/index.html", //html模板路径
+      filename: 'index.html', //生成的html存放路径，相对于 output.path
+      favicon: './public/favicon.png', // 自动把根目录下的favicon.ico图片加入html
+      template: './public/index.html', //html模板路径
       inject: true, // 是否将js放在body的末尾
-      title: "title33333333"
+      title: 'title33333333',
     }),
     // 拷贝public中的文件到最终打包文件夹里
     new CopyPlugin({
       patterns: [
         {
-          from: "./public/**/*",
-          to: "./",
+          from: './public/**/*',
+          to: './',
           globOptions: {
-            ignore: ["**/favicon.png", "**/index.html"],
+            ignore: ['**/favicon.png', '**/index.html'],
           },
           noErrorOnMissing: true,
         },
@@ -167,9 +172,9 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'], //后缀名自动补全
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   // 第三方库不参与打包，我们要在Index.html模板上手动加上cdn
