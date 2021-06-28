@@ -7,6 +7,7 @@ import ImgLogo from '@/assets/react-logo.jpg';
 import './i.css';
 import styles from './index.less';
 import red from './red.css';
+// import "./one.less";
 import "./one.less";
 
 function HomePageContainer(props) {
