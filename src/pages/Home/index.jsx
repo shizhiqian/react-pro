@@ -10,7 +10,6 @@ import red from './red.css'
 import './one.less'
 
 
-
 function HomePageContainer() {
   return (
     <div className={styles.layout}>
