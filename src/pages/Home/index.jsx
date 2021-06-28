@@ -1,7 +1,7 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { Button } from 'antd';
-import ImgLogo from '@/assets/react-logo.jpg';
+import { Button } from 'antd'
+import ImgLogo from '@/assets/react-logo.jpg'
 // import '@/assets/font/iconfont.css';
 import './i.css'
 import styles from './index.less'

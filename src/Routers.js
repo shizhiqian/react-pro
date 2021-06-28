@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable'; // 用于代码分割时动态加载模块
