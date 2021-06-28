@@ -12,7 +12,6 @@ import './one.less'
 
 
 
-
 function HomePageContainer() {
   return (
     <div className={styles.layout}>
