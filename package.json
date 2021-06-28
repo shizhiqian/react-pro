@@ -9,7 +9,10 @@
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx"
   },
-  "keywords": ["react", "webpack5"],
+  "keywords": [
+    "react",
+    "webpack5"
+  ],
   "author": "shizhiqian",
   "license": "ISC",
   "private": true,
@@ -64,6 +67,7 @@
     "css-minimizer-webpack-plugin": "^3.0.1",
     "dayjs": "^1.10.5",
     "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",

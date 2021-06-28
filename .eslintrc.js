@@ -27,7 +27,8 @@ module.exports = {
   // "extends": "eslint:recommended",
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended" // 这里会先继承 eslint:recommended 的配置]
+    "plugin:react/recommended", // 这里会先继承 eslint:recommended 的配置]
+    "prettier"
   ],
   // 插件名称可以省略 eslint-plugin- 前缀。
   "plugins": ["react", "react-hooks", "prettier"],
