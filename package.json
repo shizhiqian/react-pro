@@ -21,11 +21,6 @@
     "> 2%",
     "not ie <= 10"
   ],
-  "gitHooks": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "npm run lint",
     "src/**/*.{js,jsx,ts,tsx,less,css,md,json}": [
