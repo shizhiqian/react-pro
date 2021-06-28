@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from 'antd';
 import ImgLogo from '@/assets/react-logo.jpg';
 // import '@/assets/font/iconfont.css';
-import './i.css';
+import './i.css'
 import styles from './index.less'
 import red from './red.css'
 // import "./one.less"
