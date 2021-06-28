@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Spin, Button } from 'antd';
+// import { connect } from 'react-redux';
+import { Button } from 'antd';
 import ImgLogo from '@/assets/react-logo.jpg';
 // import '@/assets/font/iconfont.css';
 import './i.css';
-import styles from './index.less';
+import styles from './index.less'
 import red from './red.css'
 // import "./one.less"
 import './one.less'
@@ -13,7 +13,7 @@ import './one.less'
 
 
 
-function HomePageContainer(props) {
+function HomePageContainer() {
   return (
     <div className={styles.layout}>
       <Button type="primary">Primary Button</Button>
@@ -30,12 +30,12 @@ function HomePageContainer(props) {
     </div>
   );
 }
-
-export default connect(
-  state => {
-    return {};
-  },
-  dispatch => ({
-    actions: {},
-  }),
-)(HomePageContainer);
+export default HomePageContainer;
+// export default connect(
+//   state => {
+//     return {};
+//   },
+//   dispatch => ({
+//     actions: {},
+//   }),
+// )(HomePageContainer);
