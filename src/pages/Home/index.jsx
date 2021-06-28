@@ -11,7 +11,7 @@ import red from './red.css';
 import "./one.less";
 
 function HomePageContainer(props) {
-  const a;
+  // const a;
   return (
     <div className={styles.layout}>
       <Button type="primary">Primary Button</Button>
