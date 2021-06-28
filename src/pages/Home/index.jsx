@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 // import { connect } from 'react-redux';
 import { Button } from 'antd'
 import ImgLogo from '@/assets/react-logo.jpg'

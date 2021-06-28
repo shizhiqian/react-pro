@@ -21,7 +21,7 @@
     "> 2%",
     "not ie <= 10"
   ],
-  "husky": {
+  "gitHooks": {
     "hooks": {
       "pre-commit": "npm run lint-staged"
     }
