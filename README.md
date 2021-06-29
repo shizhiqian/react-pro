@@ -1,24 +1,38 @@
+# 从零开始使用webpack5.0构建react+antd项目
+***
 ### 功能
-- [x] Webpack5
-- [x] 支持typescript
+- [x] Webpack5配置
+- [x] Webpack的loader配置
+- [x] webpack-dev-server开发服务器配置
 - [x] Babel7
+- [x] 代码分割
+- [x] Js压缩
+- [x] Css压缩
+- [x] Css modules配置
+- [x] Postcss配置
+- [x] Eslint配置
+- [x] Prettier配置
+- [x] Stylelint配置
+- [x] git commit钩子格式化代码
+- [ ] 构建bundle分析
+- [x] 支持typescript
+
 - [x] React17
 - [x] Hooks
+- [x] 组件支持less、css，hash格式命名样式
 - [x] Redux完整示范
 - [x] React-router-dom
 - [x] 集成Antd
-- [x] Css modules，支持Less，hash命名样式
-- [x] Postcss添加css前缀
-- [x] Eslint、Prettier统一代码风格
-- [x] Husky6提交前检查代码风格
+- [x] 
+
 - [x] Mockjs模拟后端返回接口
-- [x] 代码分割
 - [x] 热替换
 - [x] ES6+
 - [x] Husky
 - [x] Axios异步请求
 - [ ] react-helmet用来动态改变title
 - [ ] 布局：顶部导航、左侧菜单
+- [ ] 页面按需加载
 
 
 
@@ -63,7 +77,6 @@ yarn add axios antd @rematch/core redux react-router-dom react-redux react-dom r
 # happypack：Webpack插件 - 多线程编译，速度更快，开发环境用
 # webpackbar：控制台美化webpack进度条
 # eslint：代码规范检测器
-# eslint-loader：Webpack解析器 - 打包时检测代码规范时用
 # eslint-plugin-prettier：Eslint插件 - prettier风格的代码格式规范，配置eslint用
 # eslint-plugin-react：Eslint插件 - 让Eslint支持检测JSX（.eslintrc22222.json中有配置）
 # eslint-plugin-react-hooks：Eslint插件 - 让Eslint支持检测Hooks语法
@@ -75,8 +88,10 @@ yarn add axios antd @rematch/core redux react-router-dom react-redux react-dom r
 # postcss-preset-env：跟babel类似，把新css语法转换为旧css语法
 # less：Less核心
 # less-loader：Webpack解析器 - 解析Less,主要是解析antd的样式文件
-# file-loader：Webpack解析器 - 解析各类文件时有用，图片音频等,处理它们的相对路径
-yarn add postcss-preset-env dayjs postcss autoprefixer less less-loader file-loader postcss-loader css-loader style-loader html-webpack-plugin antd-dayjs-webpack-plugin copy-webpack-plugin happypack webpackbar eslint eslint-loader eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks prettier --dev
+# stylelint: http://stylelint.docschina.org/
+# stylelint-order：指定事物的排序，例如声明块中的属性（插件包）。
+# stylelint-prettier：将 Prettier 作为 stylelint 规则运行。
+yarn add postcss-preset-env dayjs postcss autoprefixer less less-loader file-loader postcss-loader css-loader style-loader html-webpack-plugin antd-dayjs-webpack-plugin copy-webpack-plugin happypack webpackbar eslint eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks prettier --dev
 
 ```
 6. 安装babel

@@ -17,9 +17,10 @@ module.exports = {
   // 配置解析器支持的语法，指定ECMAScript的版本、sourceType的类型
   parserOptions: {
     allowImportExportEverywhere: true,
-    ecmaFeatures: { // 指定要使用其他那些语言对象
+    ecmaFeatures: {
+      // 指定要使用其他那些语言对象
       impliedStrict: true, // 启用严格校验模式
-      jsx: true // 启用jsx语法
+      jsx: true, // 启用jsx语法
     },
     ecmaVersion: 2018, // ES的版本，默认为5
     sourceType: 'module', //指定源代码存在的位置，设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)。
@@ -34,7 +35,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'prettier'
+    'prettier',
   ],
   // 插件名称可以省略 eslint-plugin- 前缀。
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
@@ -50,6 +51,7 @@ module.exports = {
     semi: ['error', 'always'],
     'react/prop-types': 0, //防止在react组件定义中缺少props验证
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
   },
 };
 

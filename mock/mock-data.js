@@ -1,14 +1,14 @@
 /** MOCK 模拟数据拦截ajax请求 **/
 
-const Mock = require("mockjs");
+const Mock = require('mockjs');
 
 /** 数据模版 **/
 const ajaxTest = {
   status: 200,
-  "data|1-10": [
+  'data|1-10': [
     {
-      "id|+1": 1,
-      email: "@EMAIL",
+      'id|+1': 1,
+      email: '@EMAIL',
     },
   ],
 };

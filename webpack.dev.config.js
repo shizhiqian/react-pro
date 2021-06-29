@@ -3,8 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 动态生成html插件
 const CopyPlugin = require('copy-webpack-plugin'); // 用于直接复制public中的文件到打包的最终文件夹中
 const webpackbar = require('webpackbar'); // 控制台美化webpack进度条
-
-const PUBLIC_PATH = '/'; // 基础路径
+const ESLintPlugin = require('eslint-webpack-plugin'); // 用于替代eslint-loader(eslint-loader已经废弃)
 
 module.exports = {
   mode: 'development',
@@ -15,7 +14,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, '/'), // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径,要求值必须为绝对路径
-    publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径,若publicPath的值以“/”开始，则代表此时publicPath是以当前页面的host name为基础路径的
+    publicPath: '/', // 文件解析路径，index.html中引用的路径会被设置为相对于此路径,若publicPath的值以“/”开始，则代表此时publicPath是以当前页面的host name为基础路径的
     filename: 'bundle-[contenthash].js', // 编译后的文件名字
   },
   devtool: 'eval-source-map', // 报错的时候在控制台输出哪一行报错
@@ -47,8 +46,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // loaders: '...',已废弃。
-      // options: '...',已废弃。Rule.options 和 Rule.query 是 Rule.use: [ { options } ] 的简写
       {
         test: /\.(ts|tsx|js|jsx)?$/i,
         exclude: /node_modules/,
@@ -88,7 +85,7 @@ module.exports = {
               importLoaders: 1,
               modules: {
                 mode: 'local',
-                localIdentName: '[path][name]__[local]__[hash:base64:5]',
+                localIdentName: 'zhiqian__[path][name]__[local]__[hash:base64:5]',
               },
             },
           },
@@ -107,7 +104,7 @@ module.exports = {
               importLoaders: 2,
               modules: {
                 mode: 'local',
-                localIdentName: '[path][name]__[local]__[hash:base64:5]',
+                localIdentName: 'zhiqian__[path][name]__[local]__[hash:base64:5]',
               },
             },
           },
@@ -170,6 +167,7 @@ module.exports = {
         },
       ],
     }),
+    new ESLintPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'], //后缀名自动补全

@@ -13,50 +13,50 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon-test:before {
+.icon-icon-test::before {
   content: '\e64d';
 }
 
-.icon-java-script:before {
+.icon-java-script::before {
   content: '\e810';
 }
 
-.icon-api:before {
+.icon-api::before {
   content: '\e723';
 }
 
-.icon-shenqingshouquan:before {
+.icon-shenqingshouquan::before {
   content: '\e648';
 }
 
-.icon-anquan:before {
+.icon-anquan::before {
   content: '\e607';
 }
 
-.icon-api1:before {
+.icon-api1::before {
   content: '\e7e1';
 }
 
-.icon-keshihuashujuETL:before {
+.icon-keshihuashujuETL::before {
   content: '\e660';
 }
 
-.icon-wenjian:before {
+.icon-wenjian::before {
   content: '\e601';
 }
 
-.icon-quanxianguanli:before {
+.icon-quanxianguanli::before {
   content: '\e605';
 }
 
-.icon-biaodanpeizhi:before {
+.icon-biaodanpeizhi::before {
   content: '\e673';
 }
 
-.icon-chazhaoxiangsi:before {
+.icon-chazhaoxiangsi::before {
   content: '\e600';
 }
 
-.icon-shuju:before {
+.icon-shuju::before {
   content: '\e68e';
 }
