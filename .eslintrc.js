@@ -37,6 +37,11 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   // 插件名称可以省略 eslint-plugin- 前缀。
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
@@ -45,13 +50,15 @@ module.exports = {
     // 'warn' 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
     // 'error' 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
     // ['error', 'double'] 数组的第一项总是规则的严重程度（数字或字符串）。其他选项使用数组字面量指定它们
-    indent: ['error', 2, { SwitchCase: 1 }],
+    // indent: ['error', 2, { SwitchCase: 1 }],
     // 插件名/规则ID
     'react/jsx-uses-react': 2,
     semi: ['error', 'always'],
     'react/prop-types': 0, //防止在react组件定义中缺少props验证
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    'react/no-unescaped-entities': 0,
+    indent: 0,
   },
 };
 

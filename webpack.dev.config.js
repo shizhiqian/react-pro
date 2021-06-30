@@ -57,6 +57,7 @@ module.exports = {
           },
         ],
       },
+      // 专门处理antd等组件等样式
       {
         test: /\.less$/,
         include: /node_modules/,
@@ -74,9 +75,15 @@ module.exports = {
           },
         ],
       },
+      // 专门处理iconfont的css
       {
         test: /\.css$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src/assets/font'),
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.css$/,
+        exclude: ['/node_modules/', path.resolve(__dirname, 'src/assets/font')],
         use: [
           'style-loader',
           {
@@ -92,7 +99,6 @@ module.exports = {
           'postcss-loader',
         ],
       },
-
       {
         test: /\.less$/,
         exclude: /node_modules/,
@@ -127,7 +133,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset',
         parser: {
           dataUrlCondition: {
@@ -142,7 +148,6 @@ module.exports = {
   },
   plugins: [
     new webpackbar(),
-    // 定义环境变量为开发环境
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
@@ -175,9 +180,4 @@ module.exports = {
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // 第三方库不参与打包，我们要在Index.html模板上手动加上cdn
-  // externals: { // 后面的值跟着暴露出来的模块
-  //   lodash: '_', // lodash暴露出来的对象是_
-  //   dayjs: 'dayjs', // dayjs暴露出来的对象是dayjs
-  // }
 };

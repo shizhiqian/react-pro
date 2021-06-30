@@ -2,11 +2,11 @@
 import { init } from '@rematch/core';
 
 import app from '../models/app';
-// import test from "../models/test";
+import test from '../models/test';
 
 export default init({
   models: {
     app,
-    // test,
+    test,
   },
 });

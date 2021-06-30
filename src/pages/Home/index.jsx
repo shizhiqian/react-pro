@@ -1,49 +1,33 @@
+/*
+eslint-disable
+ */
+/** 主页 **/
+
+/** 所需的各种插件 **/
 import React from 'react';
-// import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { connect } from 'react-redux';
+
+/** 所需的各种资源 **/
+import './index.less';
 import ImgLogo from '@/assets/react-logo.jpg';
-// import '@/assets/font/iconfont.css';
-import './i.css';
-import styles from './index.less';
-import red from './red.css';
-// import T from './t.tsx'
-// import "./one.less"
-import './one.less';
 
-const aa = {
-  type: 1,
-  a: 12,
-};
-
-const HomePageContainer = () => {
-  const { type, a } = aa;
-
+function HomePageContainer(props) {
   return (
-    <div className={styles.layout}>
-      {/*<T />*/}
-      <Button type="primary">Primary Button</Button>
-      {/*<span className="iconfont icon-anquan"></span>*/}
-      <div>
-        {type}\{a}
-      </div>
-      <div className="one">one</div>
-      <div className={red.red}>red23</div>
-      <div className="i">njj732222222</div>
-      {/*<div>{ddd}</div>*/}
+    <div className="page-home all_nowarp">
       <div className="box">
         <img src={ImgLogo} />
         <div className="title">React-Luo</div>
-        <div className="info">react17、redux4、router5、webpack5、eslint、babel7、antd43322223</div>
+        <div className="info">react17、redux4、router5、webpack5、eslint、babel7、antd4</div>
       </div>
     </div>
   );
-};
-export default HomePageContainer;
-// export default connect(
-//   state => {
-//     return {};
-//   },
-//   dispatch => ({
-//     actions: {},
-//   }),
-// )(HomePageContainer);
+}
+
+export default connect(
+  state => {
+    return {};
+  },
+  dispatch => ({
+    actions: {},
+  }),
+)(HomePageContainer);

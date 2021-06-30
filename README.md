@@ -5,7 +5,7 @@
 - [x] Webpack的loader配置
 - [x] webpack-dev-server开发服务器配置
 - [x] Babel7
-- [x] 代码分割
+- [x] react-loadable实现的代码分割
 - [x] Js压缩
 - [x] Css压缩
 - [x] Css modules配置

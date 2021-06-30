@@ -1,62 +1,63 @@
 @font-face {
-  font-family: 'iconfont'; /* Project id 1201824 */
+  font-family: "iconfont"; /* Project id 1201824 */
   src: url('iconfont.woff2?t=1624420338564') format('woff2'),
-    url('iconfont.woff?t=1624420338564') format('woff'),
-    url('iconfont.ttf?t=1624420338564') format('truetype');
+       url('iconfont.woff?t=1624420338564') format('woff'),
+       url('iconfont.ttf?t=1624420338564') format('truetype');
 }
 
 .iconfont {
-  font-family: 'iconfont' !important;
+  font-family: "iconfont" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon-test::before {
-  content: '\e64d';
+.icon-icon-test:before {
+  content: "\e64d";
 }
 
-.icon-java-script::before {
-  content: '\e810';
+.icon-java-script:before {
+  content: "\e810";
 }
 
-.icon-api::before {
-  content: '\e723';
+.icon-api:before {
+  content: "\e723";
 }
 
-.icon-shenqingshouquan::before {
-  content: '\e648';
+.icon-shenqingshouquan:before {
+  content: "\e648";
 }
 
-.icon-anquan::before {
-  content: '\e607';
+.icon-anquan:before {
+  content: "\e607";
 }
 
-.icon-api1::before {
-  content: '\e7e1';
+.icon-api1:before {
+  content: "\e7e1";
 }
 
-.icon-keshihuashujuETL::before {
-  content: '\e660';
+.icon-keshihuashujuETL:before {
+  content: "\e660";
 }
 
-.icon-wenjian::before {
-  content: '\e601';
+.icon-wenjian:before {
+  content: "\e601";
 }
 
-.icon-quanxianguanli::before {
-  content: '\e605';
+.icon-quanxianguanli:before {
+  content: "\e605";
 }
 
-.icon-biaodanpeizhi::before {
-  content: '\e673';
+.icon-biaodanpeizhi:before {
+  content: "\e673";
 }
 
-.icon-chazhaoxiangsi::before {
-  content: '\e600';
+.icon-chazhaoxiangsi:before {
+  content: "\e600";
 }
 
-.icon-shuju::before {
-  content: '\e68e';
+.icon-shuju:before {
+  content: "\e68e";
 }
+
