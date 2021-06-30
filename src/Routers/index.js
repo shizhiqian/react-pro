@@ -16,15 +16,15 @@ const Home = Loadable({
   timeout: 10 * 1000, // 10秒
 });
 const Features = Loadable({
-  loader: () => import(/* webpackChunkName:'home' */ '@/pages/Features'),
+  loader: () => import(/* webpackChunkName:'features' */ '@/pages/Features'),
   loading: Loading,
 });
 const Test = Loadable({
-  loader: () => import(/* webpackChunkName:'home' */ '@/pages/Test'),
+  loader: () => import(/* webpackChunkName:'test' */ '@/pages/Test'),
   loading: Loading,
 });
 const TestClass = Loadable({
-  loader: () => import(/* webpackChunkName:'home' */ '@/pages/TestClass'),
+  loader: () => import(/* webpackChunkName:'testClass' */ '@/pages/TestClass'),
   loading: Loading,
 });
 // const Test = Loadable({
