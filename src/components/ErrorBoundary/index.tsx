@@ -30,21 +30,19 @@ export default class ErrorBoundary extends PureComponent<IProps, IState> {
 
   render() {
     const { error, errorInfo } = this.state;
-    // if (error && errorInfo) {
-    //   return (
-    //     <div>
-    //       {/*@ts-ignore*/}
-    //       <details open="open" style={{ whiteSpace: 'pre-wrap' }}>
-    //         <summary>错误信息</summary>
-    //         {this.state.error && this.state.error.toString()}
-    //         <br />
-    //         {this.state.errorInfo.componentStack}
-    //       </details>
-    //       2222222222
-    //     </div>
-    //   );
-    // }
-    // Normally, just render children
+    if (error && errorInfo) {
+      return (
+        <>
+          {/*@ts-ignore*/}
+          <details open="open" style={{ whiteSpace: 'pre-wrap' }}>
+            <summary>错误信息</summary>
+            {this.state.error && this.state.error.toString()}
+            <br />
+            {this.state.errorInfo.componentStack}
+          </details>
+        </>
+      );
+    }
     return this.props.children;
   }
 }

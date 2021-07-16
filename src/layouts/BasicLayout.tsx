@@ -1,41 +1,35 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
-import loadable from '@loadable/component';
-import { Layout, message } from 'antd';
-import Header from '@/components/Header';
+import { Layout } from 'antd';
 import { History } from 'history';
+import Header from '@/components/Header';
 import SiderMenu from '@/components/SiderMenu';
 import Footer from '@/components/Footer';
-import PageLoading from '@/components/PageLoading';
-// import Bread from "@/components/Bread";
-import BreadTab from '@/components/BreadTab'; // Tab方式的导航
-import tools from '@/utils/tools';
 import { Dispatch } from '@/store';
-import './BasicLayout.less';
+import { convertLoadableRoute } from '@/utils/utils';
+import routeConfig from './routeConfig';
+import styles from './BasicLayout.less';
 
-const { Content } = Layout;
-export const [NotFound, Home] = [
-  () => import('../pages/404'),
-  () => import('../pages/Home'),
-  () => import('../pages/Home'),
-].map(item => {
-  return loadable(item as any, {
-    fallback: <PageLoading />,
-  });
-});
-
+const routeMap = routeConfig.filter(item => item.path === '/')?.[0]?.routes || [];
 type IProps = {
   history: History;
   location: Location;
 };
+const { Content } = Layout;
 
 function BasicLayout(props: IProps): JSX.Element {
   const { history, location } = props;
   const dispatch = useDispatch<Dispatch>();
   const userInfo = useSelector((state: any) => state.global.userInfo);
   const [collapsed, setCollapsed] = useState(false); // 菜单栏是否收起
+  const [route, setRoute] = useState([]); // 路由
+  useEffect(() => {
+    const routes = convertLoadableRoute(routeMap);
+    // @ts-ignore
+    setRoute(routes);
+  }, []);
 
   // 退出登录
   const handleLogout = async (): Promise<void> => {
@@ -54,8 +48,8 @@ function BasicLayout(props: IProps): JSX.Element {
   );
 
   return (
-    <Layout className="page-basic" hasSider>
-      <SiderMenu collapsed={collapsed} location={location} history={history} />
+    <Layout className={styles.layout} hasSider>
+      <SiderMenu menus={routeMap} collapsed={collapsed} location={location} history={history} />
       <Layout>
         <Header
           collapsed={collapsed}
@@ -63,25 +57,28 @@ function BasicLayout(props: IProps): JSX.Element {
           onToggle={() => setCollapsed(!collapsed)}
           onLogout={handleLogout}
         />
-        {/* 普通面包屑导航 */}
-        {/*<Bread menus={userInfo.menus} location={props.location} />*/}
-        {/* Tab方式的导航 */}
-        {/*<BreadTab menus={userInfo.menus} location={props.location} history={props.history} />*/}
-        <Content className="content">
+        <Content className={styles.content}>
           <CacheSwitch>
-            <Redirect exact from="/" to="/home" />
-            <CacheRoute exact path="/home" render={props => handleEnter(Home, props)} />
-
-            {/*<Route exact path="/system/menuadmin" render={props => handleEnter(MenuAdmin, props)} />*/}
-            {/*<Route exact path="/system/poweradmin" render={props => handleEnter(PowerAdmin, props)} />*/}
-            {/*<Route exact path="/system/roleadmin" render={props => handleEnter(RoleAdmin, props)} />*/}
-            {/*<CacheRoute*/}
-            {/*  exact*/}
-            {/*  path="/system/useradmin"*/}
-            {/*  render={props => handleEnter(UserAdmin, props)}*/}
-            {/*/>*/}
-            {/*<Route exact path="/nopower" component={NoPower} />*/}
-            <Route component={NotFound} />
+            {route.map((item: any) => {
+              const { path, redirect, component } = item;
+              if (redirect) {
+                return <Redirect key={path} exact from={path} to={redirect} />;
+              }
+              if (component) {
+                if (path) {
+                  return (
+                    <CacheRoute
+                      key={path}
+                      exact
+                      path={path}
+                      render={props => handleEnter(component, props)}
+                    />
+                  );
+                }
+                return <Route key="no_path" component={component} />;
+              }
+              return null;
+            })}
           </CacheSwitch>
         </Content>
         <Footer />

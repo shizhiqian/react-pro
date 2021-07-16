@@ -6,10 +6,10 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import ErrorBoundary from '@/components/ErrorBoundary';
-import store from '@/store';
-import Router from '@/router';
+import { Provider } from 'react-redux';
+import store from './store';
+import Router from './router';
 import './index.less';
 
 const Root = () => {
@@ -21,9 +21,9 @@ const Root = () => {
 };
 
 ReactDOM.render(
-  <>
+  <ErrorBoundary>
     <Root />
-  </>,
+  </ErrorBoundary>,
   document.getElementById('root'),
 );
 

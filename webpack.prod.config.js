@@ -10,9 +10,10 @@ const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
 const webpackbar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const modifyVars = {
+  'primary-color': '#25b864',
+};
 const PUBLIC_PATH = '/';
-console.log(process.env.ANALYZE);
-console.log(3333);
 const config = {
   mode: 'production',
   entry: {
@@ -28,10 +29,11 @@ const config = {
     children: false, // 不输出子模块的打包信息
   },
   optimization: {
-    minimize: true,
+    moduleIds: 'named',
+    chunkIds: 'named',
     minimizer: [
+      // 使用 terser 来压缩 JavaScript
       new TerserPlugin({
-        parallel: true, // 多线程并行构建
         terserOptions: {
           // https://github.com/terser/terser#minify-options
           compress: {
@@ -39,6 +41,16 @@ const config = {
             drop_debugger: true, // 删除所有的debugger
             drop_console: true, // 删除所有的console.*
             pure_funcs: ['console.log'], // 删除所有的console.log
+          },
+
+          // 待验证
+          parse: {
+            // We want terser to parse ecma 8 code. However, we don't want it
+            // to apply any minification steps that turns valid ecma 5 code
+            // into invalid ecma 5 code. This is why the 'compress' and 'output'
+            // sections only apply transformations that are ecma 5 safe
+            // https://github.com/facebook/create-react-app/pull/4234
+            ecma: 8,
           },
         },
       }),
@@ -121,6 +133,7 @@ const config = {
             loader: 'less-loader',
             options: {
               lessOptions: {
+                modifyVars,
                 javascriptEnabled: true,
               },
             },
@@ -171,6 +184,7 @@ const config = {
             loader: 'less-loader',
             options: {
               lessOptions: {
+                modifyVars,
                 javascriptEnabled: true,
               },
             },
@@ -216,6 +230,7 @@ const config = {
       template: './public/index.html',
       hash: true,
       inject: true,
+      title: 'React-Pro',
     }),
     new CopyPlugin({
       patterns: [
@@ -231,7 +246,7 @@ const config = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css', '.wasm'], // 后缀名自动补全
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'], // 后缀名自动补全
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },

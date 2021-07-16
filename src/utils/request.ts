@@ -26,8 +26,8 @@ const codeMessage = {
 };
 
 interface IConfig {
-  isInterceptError?: boolean;
-  isNoticeError?: boolean;
+  isErrorIntercept?: boolean;
+  isErrorShow?: boolean;
 }
 
 // 设置请求超时毫秒数，默认值是 `0` (永不超时)，如10 * 1000
@@ -49,26 +49,32 @@ axios.interceptors.request.use(
  * @author zhiqian_shi
  * @date 2021/7/8 14:14
  * @Description: 响应拦截器，http状态码为200~299会执行，依次执行下面
+ * ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
  * -- 判断状态码为200
- *   ｜-- 判断 isInterceptError 为 true
- *       ｜-- 接口中 success 字段为 true，return response
- *       ｜-- 接口中 success 字段为 false，throw response
- *   ｜-- 判断 isInterceptError 为 false，return response
+ *   ｜-- 判断 isErrorIntercept = true
+ *       ｜-- 接口中 success = true，return response
+ *       ｜-- 接口中 success = false
+ *           ｜-- 判断 isErrorShow = true，throw response
+ *           ｜-- 判断 isErrorShow = false，不做处理
+ *   ｜-- 判断 isErrorIntercept = false，return response
+ * ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+ * ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
  * -- 处理异常
- *   ｜-- 判断 isNoticeError 为 true，显示错误内容
- *   ｜-- 判断 isNoticeError 为 false，不显示错误内容
+ *   ｜-- 判断 isErrorShow 为 true，显示错误内容
+ *   ｜-- 判断 isErrorShow 为 false，不显示错误内容
+ * ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
  */
 axios.interceptors.response.use(
   response => {
     const { status, data, config } = response || {};
     if (status === 200) {
-      const isInterceptError = (config as any)?.isInterceptError === true;
-      const isNoticeError = (config as any)?.isNoticeError === true;
-      if (isInterceptError) {
+      const isErrorIntercept = (config as any)?.isErrorIntercept === true;
+      const isErrorShow = (config as any)?.isErrorShow === true;
+      if (isErrorIntercept) {
         if (data?.success) {
           return response;
         }
-        if (isNoticeError) {
+        if (isErrorShow) {
           throw new Error(data?.errorMsg);
         }
       }
@@ -103,14 +109,14 @@ const handleError = (error: any): void => {
  * @Description: post请求
  * @param {string} url 不为空 接口地址
  * @param {object} params 可为空 参数
- * @param {object} config 可为空 isInterceptError是否拦截后端返回的错误内容（默认true），isNoticeError是否提示错误内容（默认true）
+ * @param {object} config 可为空 isErrorIntercept是否拦截后端返回的错误内容（默认true），isErrorShow是否提示错误内容（默认true）
  * @return {promise} 返回promise
  */
 const post = (url: string, params?: Record<string, any>, config?: IConfig): Promise<any> => {
   const configs = {
-    isInterceptError:
-      typeof config?.isInterceptError === 'boolean' ? config?.isInterceptError : true,
-    isNoticeError: typeof config?.isNoticeError === 'boolean' ? config?.isNoticeError : true,
+    isErrorIntercept:
+      typeof config?.isErrorIntercept === 'boolean' ? config.isErrorIntercept : true,
+    isErrorShow: typeof config?.isErrorShow === 'boolean' ? config.isErrorShow : true,
   };
   return new Promise((resolve, reject) => {
     axios

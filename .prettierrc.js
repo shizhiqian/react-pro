@@ -1,7 +1,7 @@
 module.exports = {
   semi: true, // 句尾添加分号
   tabWidth: 2, // tab缩进大小,默认为2
-  printWidth: 100, // 超过最大值换行
+  printWidth: 100, // 一行最多100个字符，超过则换行
   singleQuote: true, // 使用单引号, 默认false(在jsx中配置无效, 默认都是双引号)
   // 行尾逗号,默认none,可选 none|es5|all；es5 包括es5中的数组、对象；all 包括函数对象等所有可选
   trailingComma: 'all',

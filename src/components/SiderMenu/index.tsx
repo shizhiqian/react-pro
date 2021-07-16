@@ -5,56 +5,20 @@ import classNames from 'classnames';
 import { History } from 'history';
 import ImgLogo from '@/assets/logo.png';
 import Icon from '@/components/Icon';
+import { deepClone } from '@/utils/utils';
 import styles from './index.less';
 
 interface IProps {
   collapsed: boolean;
   history: History;
   location: Location;
+  menus: any;
 }
-interface IMenu {
-  title: string;
-  url: string; // 以斜杠开头 /
-  icon?: string;
-  children?: IMenu[]; // 子菜单
-}
-
-const menuData: IMenu[] = [
-  {
-    title: '首页',
-    url: '/home',
-    icon: 'HomeOutlined', // 从这里获取：https://ant.design/components/icon-cn/
-  },
-  {
-    title: '系统管理',
-    url: '/system',
-    icon: 'icon-setting',
-    children: [
-      {
-        title: '用户管理',
-        url: '/system/useradmin',
-      },
-      {
-        title: '角色管理',
-        url: '/system/roleadmin',
-      },
-      {
-        title: '权限管理',
-        url: '/system/poweradmin',
-      },
-      {
-        title: '菜单管理',
-        url: '/system/menuadmin',
-      },
-    ],
-  },
-];
-
 const { Sider } = Layout;
 const { SubMenu, Item } = Menu;
 
 export default function SiderMenu(props: IProps): JSX.Element {
-  const { location, history, collapsed } = props;
+  const { location, history, collapsed, menus } = props;
   const { pathname } = location;
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]); // 当前选中
   const [openKeys, setOpenKeys] = useState<string[]>([]); // 当前需要被展开的项
@@ -67,46 +31,54 @@ export default function SiderMenu(props: IProps): JSX.Element {
 
   const onSelect = useCallback(
     e => {
+      const { __menuname } = e?.item?.props;
+      document.title = `${__menuname}__React-Pro`;
       history.push(e.key);
     },
     [history],
   );
 
-  const makeTreeDom = useCallback((data: IMenu[]): JSX.Element[] => {
-    return data.map((item: IMenu) => {
-      if (item.children) {
+  const menuTreeRender = useCallback((data: any[]): (JSX.Element | null)[] => {
+    return data.map((item: any) => {
+      if (item.routes) {
         return (
           <SubMenu
-            key={item.url}
+            key={item.path}
             title={
               item.icon ? (
                 <span>
                   <Icon type={item.icon} />
-                  <span>{item.title}</span>
+                  <span>{item.name}</span>
                 </span>
               ) : (
-                item.title
+                item.name
               )
             }
           >
-            {makeTreeDom(item.children)}
+            {menuTreeRender(item.routes)}
           </SubMenu>
         );
-      } else {
+      }
+      if (item.name) {
         return (
-          <Item key={item.url}>
+          <Item
+            key={item.path}
+            // @ts-ignore
+            __menuname={item.name}
+          >
             {item.icon ? <Icon type={item.icon} /> : null}
-            <span>{item.title}</span>
+            <span>{item.name}</span>
           </Item>
         );
       }
+      return null;
     });
   }, []);
 
-  const menuRender: JSX.Element[] = useMemo(() => {
-    const dom = makeTreeDom(menuData);
-    return dom;
-  }, [makeTreeDom]);
+  const menuRender: (JSX.Element | null)[] = useMemo(() => {
+    const clone = deepClone(menus);
+    return menuTreeRender(clone);
+  }, []);
 
   return (
     <div className={styles.layout}>

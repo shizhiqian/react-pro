@@ -61,6 +61,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     indent: 0,
+    'no-unused-vars': 'error',
   },
 };
 

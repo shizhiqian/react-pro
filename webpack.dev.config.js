@@ -24,8 +24,10 @@ module.exports = {
   cache: {
     type: 'memory',
   },
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   optimization: {
+    minimize: false, // 告知 webpack 使用 TerserPlugin 或其它在 optimization.minimizer 定义的插件压缩 bundle
     moduleIds: 'named',
     chunkIds: 'named',
     splitChunks: {
@@ -177,7 +179,7 @@ module.exports = {
       favicon: './public/favicon.png', // 自动把根目录下的favicon.ico图片加入html
       template: './public/index.html', //html模板路径
       inject: true, // 是否将js放在body的末尾
-      title: '225title33333333',
+      title: 'React-Pro',
     }),
     new CopyPlugin({
       patterns: [

@@ -1,30 +1,42 @@
-import React from 'react';
-import loadable from '@loadable/component';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
-import PageLoading from '@/components/PageLoading';
+import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
 import Footer from '@/components/Footer';
+import { convertLoadableRoute } from '@/utils/utils';
+import routeConfig from './routeConfig';
 import styles from './UserLayout.less';
 
 const { Content } = Layout;
 
-const [NotFound, Login] = [() => import('../pages/404'), () => import('../pages/Login')].map(
-  item => {
-    return loadable(item, {
-      fallback: <PageLoading />,
-    });
-  },
-);
-
 export default function UserLayout(): JSX.Element {
+  const [route, setRoute] = useState([]); // 路由
+
+  useEffect(() => {
+    const routeMap = routeConfig.filter(item => item.path === '/user')?.[0]?.routes || [];
+    const routes = convertLoadableRoute(routeMap);
+    // @ts-ignore
+    setRoute(routes);
+  }, []);
+
   return (
     <Layout className={styles.layout}>
       <Content>
-        <Switch>
-          <Redirect exact from="/user" to="/user/login" />
-          <Route exact path="/user/login" component={Login} />
-          <Route component={NotFound} />
-        </Switch>
+        <CacheSwitch>
+          {route.map((item: any) => {
+            const { path, redirect, component } = item;
+            if (redirect) {
+              return <Redirect key={path} exact from={path} to={redirect} />;
+            }
+            if (component) {
+              if (path) {
+                return <CacheRoute key={path} exact path={path} component={component} />;
+              }
+              return <CacheRoute key="no_path" component={component} />;
+            }
+            return null;
+          })}
+        </CacheSwitch>
       </Content>
       <Footer />
     </Layout>

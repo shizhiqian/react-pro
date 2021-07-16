@@ -18,6 +18,7 @@ export default createModel<RootModel>()({
       };
     },
   },
+  // eslint-disable-next-line
   effects: dispatch => ({
     // 登录
     async fetchLogin(params: { username: string; password: string }) {
@@ -29,8 +30,8 @@ export default createModel<RootModel>()({
       // console.log(dispatch.global.updateState());
       // dispatch.global.updateState({ payload: { roles: 4 }});
       return await request.post('/api/login', params, {
-        isInterceptError: true,
-        isNoticeError: true,
+        isErrorIntercept: true,
+        isErrorShow: true,
       });
     },
     // 退出

@@ -9,12 +9,12 @@ module.exports = {
     启用插件 babel-plugin-transform-runtime 后，Babel 就会使用 babel-runtime 下的工具函数
      */
     '@babel/plugin-transform-runtime',
-    // "@babel/plugin-proposal-object-rest-spread", // 扩展运算符
-    // "@babel/plugin-syntax-dynamic-import", // 动态导入
-    // ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    // "@babel/plugin-proposal-class-properties", // 转码class
-    // "@babel/plugin-proposal-optional-chaining",
-    // "@babel/plugin-proposal-nullish-coalescing-operator",
+    '@babel/plugin-proposal-object-rest-spread', // 扩展运算符
+    '@babel/plugin-syntax-dynamic-import', // 动态导入
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    '@babel/plugin-proposal-class-properties', // 转码class
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-nullish-coalescing-operator',
     [
       'import',
       {
