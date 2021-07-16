@@ -322,7 +322,7 @@ module.exports = {
     'media-feature-colon-space-after': 'always',
     'media-feature-range-operator-space-after': 'always',
     'at-rule-name-space-after': 'always',
-    'indentation': 2,
+    indentation: 2,
     'no-eol-whitespace': true,
     'string-no-newline': null,
   },

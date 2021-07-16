@@ -15,7 +15,6 @@ module.exports = {
     // "@babel/plugin-proposal-class-properties", // 转码class
     // "@babel/plugin-proposal-optional-chaining",
     // "@babel/plugin-proposal-nullish-coalescing-operator",
-    // "react-loadable/babel",
     [
       'import',
       {

@@ -1,54 +1,72 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // 动态生成html插件
-const CopyPlugin = require('copy-webpack-plugin'); // 用于直接复制public中的文件到打包的最终文件夹中
-const webpackbar = require('webpackbar'); // 控制台美化webpack进度条
-const ESLintPlugin = require('eslint-webpack-plugin'); // 用于替代eslint-loader(eslint-loader已经废弃)
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const webpackbar = require('webpackbar');
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+const modifyVars = {
+  'primary-color': '#25b864',
+};
 
 module.exports = {
   mode: 'development',
   target: 'web',
   stats: 'errors-only',
   entry: [
-    './src/index.js', // 项目入口
+    './src/index.tsx', // 项目入口
   ],
   output: {
-    path: path.resolve(__dirname, '/'), // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径,要求值必须为绝对路径
-    publicPath: '/', // 文件解析路径，index.html中引用的路径会被设置为相对于此路径,若publicPath的值以“/”开始，则代表此时publicPath是以当前页面的host name为基础路径的
-    filename: 'bundle-[contenthash].js', // 编译后的文件名字
+    path: path.resolve(__dirname, '/'),
+    publicPath: '/',
+    filename: 'bundle-[contenthash].js',
   },
-  devtool: 'eval-source-map', // 报错的时候在控制台输出哪一行报错
+  cache: {
+    type: 'memory',
+  },
+  devtool: 'eval-source-map',
   optimization: {
+    moduleIds: 'named',
+    chunkIds: 'named',
     splitChunks: {
       chunks: 'all',
     },
+    // runtimeChunk: "single",
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       name: "vendors",
+    //       chunks: "all",
+    //     },
+    //   },
+    // },
   },
   devServer: {
-    host: 'localhost', // 监听IPV4上所有的地址，再根据端口找到不同的应用程序，比如我们监听0.0.0.0时，在同一个网段下的主机中，通过ip地址是可以访问的
+    host: 'localhost',
     hot: true,
-    port: 8083,
-    open: true, // 编译成功时自动打开服务器
-    compress: true, // 为静态文件开启gzip压缩
-    historyApiFallback: true, // 只要返回的是404，一律返回index.html页面
+    port: 10100,
+    open: true,
+    compress: true,
+    historyApiFallback: true,
+    client: {
+      logging: 'error',
+    },
     proxy: {
       '/api': {
-        target: 'http://10.254.60.11:21102', // 测试
+        target: 'http://localhost:9083',
         // secure: true, // https的时候使用该参数
         changeOrigin: true, // 是否跨域
         pathRewrite: {
-          '^/api': '', // 路径重写，将api开头的全部替换成空字符串
+          '^/api': '/api', // 路径重写，将api开头的全部替换为值
         },
       },
-    },
-    client: {
-      logging: 'info',
     },
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx|js|jsx)?$/i,
-        exclude: /node_modules/,
+        test: /\.(ts|tsx|js|jsx)?$/,
         include: path.resolve(__dirname, 'src'),
         use: [
           {
@@ -64,11 +82,11 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
+                modifyVars,
                 javascriptEnabled: true,
               },
             },
@@ -92,7 +110,7 @@ module.exports = {
               importLoaders: 1,
               modules: {
                 mode: 'local',
-                localIdentName: 'zhiqian__[path][name]__[local]__[hash:base64:5]',
+                localIdentName: 'zhiqian-[path][name]-[local]-[hash:base64:5]',
               },
             },
           },
@@ -101,7 +119,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: [
           'style-loader',
           {
@@ -110,7 +128,7 @@ module.exports = {
               importLoaders: 2,
               modules: {
                 mode: 'local',
-                localIdentName: 'zhiqian__[path][name]__[local]__[hash:base64:5]',
+                localIdentName: 'zhiqian-[path][name]-[local]-[hash:base64:5]',
               },
             },
           },
@@ -119,6 +137,7 @@ module.exports = {
             loader: 'less-loader',
             options: {
               lessOptions: {
+                modifyVars,
                 javascriptEnabled: true,
               },
             },
@@ -137,7 +156,7 @@ module.exports = {
         type: 'asset',
         parser: {
           dataUrlCondition: {
-            maxSize: 10 * 1024, // 10kb以内转换为base64
+            maxSize: 10 * 1024,
           },
         },
         generator: {
@@ -148,18 +167,18 @@ module.exports = {
   },
   plugins: [
     new webpackbar(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
+      // 如果在src目录下使用process.env.NODE_ENV，必须先在下面定义
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
-      // 根据模板插入css/js等生成最终HTML
       filename: 'index.html', //生成的html存放路径，相对于 output.path
       favicon: './public/favicon.png', // 自动把根目录下的favicon.ico图片加入html
       template: './public/index.html', //html模板路径
       inject: true, // 是否将js放在body的末尾
-      title: 'title33333333',
+      title: '225title33333333',
     }),
-    // 拷贝public中的文件到最终打包文件夹里
     new CopyPlugin({
       patterns: [
         {
@@ -175,7 +194,7 @@ module.exports = {
     new ESLintPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'], //后缀名自动补全
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'],
     alias: {
       '@': path.resolve(__dirname, './src'),
     },

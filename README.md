@@ -1,40 +1,36 @@
 # 从零开始使用webpack5.0构建react+antd项目
 ***
 ### 功能
-- [x] Webpack5配置
-- [x] Webpack的loader配置
-- [x] webpack-dev-server开发服务器配置
+- [x] Webpack5基础配置
+- [x] 开发服务器配置
+- [x] 抽取公共代码
 - [x] Babel7
-- [x] react-loadable实现的代码分割
-- [x] Js压缩
-- [x] Css压缩
 - [x] Css modules配置
 - [x] Postcss配置
 - [x] Eslint配置
-- [x] Prettier配置
 - [x] Stylelint配置
-- [x] git commit钩子格式化代码
-- [ ] 构建bundle分析
+- [x] Prettier配置
+- [x] 支持less、css，hash格式命名样式
+- [x] Husky，git commit钩子格式化代码
+- [x] 构建bundle分析
 - [x] 支持typescript
-
+- [x] 支持Mock
 - [x] React17
 - [x] Hooks
-- [x] 组件支持less、css，hash格式命名样式
-- [x] Redux完整示范
 - [x] React-router-dom
-- [x] 集成Antd
-- [x] 
-
-- [x] Mockjs模拟后端返回接口
-- [x] 热替换
+- [x] React-router-cache-route 缓存页面
+- [x] 封装错误边界
+- [x] @loadable/component按需加载路由
+- [x] @rematch/core 替代Redux
+- [x] @rematch/loading自动处理 loading 状态
+- [x] Axios统一封装，如：拦截异常
+- [x] Antd
+- [x] 定制antd主题
 - [x] ES6+
-- [x] Husky
-- [x] Axios异步请求
-- [ ] react-helmet用来动态改变title
-- [ ] 布局：顶部导航、左侧菜单
-- [ ] 页面按需加载
+- [x] 布局：顶部导航、左侧菜单
 
-
+- [ ] 单元测试，e2e测试
+- [ ] 提交规范
 
 
 ### 实现过程
