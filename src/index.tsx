@@ -11,18 +11,8 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import store from '@/store';
 import Router from '@/router';
 import './index.less';
-// window.addEventListener('error', function(event) {
-//   console.log(event);
-//   console.log(666666);
-// }, false)
 
 const Root = () => {
-  // window.addEventListener('unhandledrejection',  event => {
-  //   console.log('error event:', event.reason);
-  //   console.log(55555555);
-  //   // return true;
-  //   event.preventDefault()
-  // }, false)
   return (
     <Provider store={store}>
       <Router />
