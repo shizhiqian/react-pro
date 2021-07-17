@@ -1,17 +1,5 @@
 #!/bin/sh
 
-# OUTTYPE是状态类型
-# 1 nothing to commit, working tree clean（没有什么要提交的，工作树干净）
-# 2 no changes added to commit（没有添加要提交的更改）
-# 3 Changes not staged for commit（未分段提交的更改）
-# 4 Changes to be committed（提交的更改）
-# 5 both modified: （需要解决冲突的文件）
-# 6 Untracked files: （未监控的文件）
-
-# conflicts（冲突）
-# error:（冲突）
-# fatal:（致命的错误）
-
 # 定义变量，当前分支
 CURRENT_BRANCH=$(git symbolic-ref --short -q HEAD)
 
@@ -19,7 +7,6 @@ CURRENT_BRANCH=$(git symbolic-ref --short -q HEAD)
 COMMIT_MSG=$1;
 
 function checkGitStatus {
-  echo
     STR1="nothing to commit, working tree clean"
     STR2="no changes added to commit"
     STR3="Changes not staged for commit"
@@ -31,10 +18,6 @@ function checkGitStatus {
     FATAL="fatal:" #致命的错误
     OUTTYPE=-1
     out=$(git status)
-
-echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
-    echo $OUTTYPE
-    echo -e "\033[32m ---------------我是分割线2--------------- \033[0m"
     result=$(echo $out | grep "$STR5")
     if [[ "$result" != "" ]];then
         OUTTYPE=5
@@ -77,8 +60,6 @@ echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
     fi
     if [ "$OUTTYPE" == "1" ];then
         git status
-        echo -e "\033[32m 测试结束 \033[0m"
-        exit 2
         echo -e "\033[32m拉取远程代码：git pull origin $CURRENT_BRANCH\033[0m"
 
         ret=$(git pull origin $CURRENT_BRANCH)
@@ -91,7 +72,6 @@ echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
             echo -e "\033[31m▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲冲突文件结束▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲\033[0m"
             exit 2
         fi
-
         echo -e "\033[32m推送至远程：git push -u origin $CURRENT_BRANCH\033[0m"
         rm -rf report.*
         git push -u origin $CURRENT_BRANCH
