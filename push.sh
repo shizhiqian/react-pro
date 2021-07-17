@@ -1,5 +1,17 @@
 #!/bin/sh
 
+# OUTTYPE是状态类型
+# 1 nothing to commit, working tree clean（没有什么要提交的，工作树干净）
+# 2 no changes added to commit（没有添加要提交的更改）
+# 3 Changes not staged for commit（未分段提交的更改）
+# 4 Changes to be committed（提交的更改）
+# 5 both modified: （需要解决冲突的文件）
+# 6 Untracked files: （未监控的文件）
+
+# conflicts（冲突）
+# error:（冲突）
+# fatal:（致命的错误）
+
 # 定义变量，当前分支
 CURRENT_BRANCH=$(git symbolic-ref --short -q HEAD)
 
@@ -20,17 +32,10 @@ function checkGitStatus {
     OUTTYPE=-1
     out=$(git status)
 
-echo "\033[32m ---------------我是分割线1--------------- \033[0m"
+echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
     echo $OUTTYPE
-    echo "\033[32m ---------------我是分割线2--------------- \033[0m"
+    echo -e "\033[32m ---------------我是分割线2--------------- \033[0m"
     result=$(echo $out | grep "$STR5")
-        echo $result
-
-        echo "\033[32m ---------------我是分割线3--------------- \033[0m"
-
-
-
-
     if [[ "$result" != "" ]];then
         OUTTYPE=5
     fi
@@ -84,6 +89,8 @@ echo "\033[32m ---------------我是分割线1--------------- \033[0m"
             echo -e "\033[31m▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲冲突文件结束▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲\033[0m"
             exit 2
         fi
+        echo -e "\033[32m 测试结束 \033[0m"
+        exit 2
         echo -e "\033[32m推送至远程：git push -u origin $CURRENT_BRANCH\033[0m"
         rm -rf report.*
         git push -u origin $CURRENT_BRANCH
