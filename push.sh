@@ -7,6 +7,7 @@ CURRENT_BRANCH=$(git symbolic-ref --short -q HEAD)
 COMMIT_MSG=$1;
 
 function checkGitStatus {
+  echo
     STR1="nothing to commit, working tree clean"
     STR2="no changes added to commit"
     STR3="Changes not staged for commit"
