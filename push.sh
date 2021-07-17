@@ -20,8 +20,9 @@ function checkGitStatus {
     OUTTYPE=-1
     out=$(git status)
 
-    echo $out
-    echo "\033[32m ---------------我是分割线--------------- \033[0m"
+echo "\033[32m ---------------我是分割线1--------------- \033[0m"
+    echo $OUTTYPE
+    echo "\033[32m ---------------我是分割线2--------------- \033[0m"
     result=$(echo $out | grep "$STR5")
     if [[ "$result" != "" ]];then
         OUTTYPE=5
