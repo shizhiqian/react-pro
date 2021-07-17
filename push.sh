@@ -19,6 +19,9 @@ function checkGitStatus {
     FATAL="fatal:" #致命的错误
     OUTTYPE=-1
     out=$(git status)
+
+    echo $out
+    echo -e "\033[32m ---------------我是分割线--------------- \033[0m"
     result=$(echo $out | grep "$STR5")
     if [[ "$result" != "" ]];then
         OUTTYPE=5
