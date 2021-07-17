@@ -77,6 +77,8 @@ echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
     fi
     if [ "$OUTTYPE" == "1" ];then
         git status
+        echo -e "\033[32m 测试结束 \033[0m"
+        exit 2
         echo -e "\033[32m拉取远程代码：git pull origin $CURRENT_BRANCH\033[0m"
 
         ret=$(git pull origin $CURRENT_BRANCH)
@@ -89,8 +91,7 @@ echo -e "\033[32m ---------------我是分割线1--------------- \033[0m"
             echo -e "\033[31m▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲冲突文件结束▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲\033[0m"
             exit 2
         fi
-        echo -e "\033[32m 测试结束 \033[0m"
-        exit 2
+
         echo -e "\033[32m推送至远程：git push -u origin $CURRENT_BRANCH\033[0m"
         rm -rf report.*
         git push -u origin $CURRENT_BRANCH
